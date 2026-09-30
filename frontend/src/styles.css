@@ -1,0 +1,187 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #172033;
+  background: #f4f7fb;
+}
+
+body {
+  margin: 0;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 36px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #4f46e5;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+}
+
+.subtitle {
+  color: #667085;
+  margin: 8px 0 0;
+}
+
+.connection {
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-weight: 700;
+  background: white;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .08);
+}
+
+.online {
+  color: #16803c;
+}
+
+.offline {
+  color: #b42318;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-card,
+.slot-card {
+  background: white;
+  border: 1px solid #e5eaf2;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+}
+
+.summary-card {
+  padding: 20px 22px;
+}
+
+.summary-card span {
+  color: #667085;
+  font-weight: 600;
+}
+
+.summary-card strong {
+  display: block;
+  font-size: 2rem;
+  margin-top: 6px;
+}
+
+.summary-card.available strong {
+  color: #16803c;
+}
+
+.summary-card.occupied strong {
+  color: #d92d20;
+}
+
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.slot-card {
+  padding: 20px;
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+.slot-card:hover {
+  transform: translateY(-3px);
+}
+
+.slot-card.is-free {
+  border-color: #a6d8b5;
+}
+
+.slot-card.is-occupied {
+  border-color: #f2b8b5;
+}
+
+.slot-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #16803c;
+}
+
+.is-occupied .status-dot {
+  background: #d92d20;
+}
+
+.parking-symbol {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  margin: 28px auto 18px;
+  border-radius: 50%;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.slot-card h2 {
+  text-align: center;
+  margin: 0;
+}
+
+.slot-card p {
+  text-align: center;
+  color: #667085;
+  font-size: .9rem;
+}
+
+@media (max-width: 850px) {
+  .page {
+    padding: 20px;
+  }
+
+  .summary,
+  .slot-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .summary,
+  .slot-grid {
+    grid-template-columns: 1fr;
+  }
+}
