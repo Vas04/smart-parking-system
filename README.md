@@ -1,29 +1,27 @@
-# Smart Parking System
+# AI + IoT Intelligent Smart Parking System
 
-An integrated AI + IoT smart parking platform for real-time parking-slot monitoring.
+Integrated parking management platform combining ESP32 IoT sensing, MQTT, PostgreSQL, FastAPI, WebSocket, React and camera-based vehicle detection.
 
-## Architecture
+## Software architecture
+ESP32/IR -> MQTT -> FastAPI -> PostgreSQL -> WebSocket -> React
+Camera -> YOLO -> Vision API -> FastAPI
 
-ESP32 → Wi-Fi → MQTT → FastAPI → PostgreSQL → WebSocket → React
+## Modules
+- backend/ — FastAPI, database, MQTT, fusion, analytics and reservations
+- frontend/ — React/Vite real-time dashboard
+- firmware/ — ESP32 firmware
+- vision/ — YOLO/OpenCV pipeline
+- docker-compose.yml — PostgreSQL and Mosquitto
 
-The backend is designed to accept live slot-state updates from ESP32 devices while the frontend receives updates instantly through WebSockets.
+## Start
+1. docker compose up -d postgres mosquitto
+2. cd backend && python -m venv .venv
+3. Activate the environment and run: pip install -r requirements.txt
+4. Run: uvicorn app.main:app --reload
+5. In frontend: npm install && npm run dev
 
-## Repository
+Backend: http://localhost:8000
+Frontend: http://localhost:5173
+API docs: http://localhost:8000/docs
 
-- `backend/` — FastAPI API, MQTT ingestion, database models
-- `frontend/` — React/Vite dashboard
-- `docs/` — project documentation
-
-## Initial development
-
-The first software milestone provides:
-- 4 parking slots
-- REST API for slot status
-- MQTT ingestion endpoint/service
-- WebSocket live updates
-- PostgreSQL-ready database layer
-- React real-time dashboard
-
-## Run locally
-
-See the README files inside `backend/` and `frontend/`.
+The camera ROI coordinates in vision/detect.py must be calibrated for the actual camera view. YOLO inference should run on a PC/laptop or suitable compute host, not on the ESP32-CAM.
